@@ -1,4 +1,4 @@
-package com.example.restfulboard;
+package com.example.restfulboard.helloworld;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
