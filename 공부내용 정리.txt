@@ -17,8 +17,31 @@ ResponseEntity는 개발자가 결과 데이터와 HTTP 상태 코드를 직접 
 새로 생성된 리소스의 경우 HTTP 상태코드 201 Created가 반환된다.
 300번대 응답의 경우 "HTTP/1.1 302 Found Location: /" 이런 응답이 왔다면 브라우저는 / 주소로 redirect 한다.
 
+* ControllerAdvice
+
+ControllerAdvice는 클래스의 경로를 검색해서 오류를 캐치할 구현 클래스를 만들게 도와준다. 일반적으로 @Controller 또는 @RestController 가 선언된 클래스들에서
+발생한 예외를 감지하고 적절한 응답을만들어 낼 때 사용한다. AOP를 사용한다.
+간단하게 생각하면, 비즈니스 로직에서 Exception 던질 때 마다 메세지, 공통로직 처리 등 공통으로 해야할 부분을 @ControllerAdvice 가 달린 클래스에 정의해서 처리해준다고 생각하는 게 쉽다.
+
+* Valid
+
+javax에서 제공하는 @Valid를 통해서 입력값의 유효성을 검사할 수 있다.
+@AssertFalse : false 값만 통과 가능
+@AssertTrue : true 값만 통과 가능
+@DecimalMax(value=) : 지정된 값 이하의 실수만 통과 가능
+@DecimalMin(value=) : 지정된 값 이상의 실수만 통과 가능
+@Digits(integer=,fraction=) : 대상 수가 지정된 정수와 소수 자리수보다 적을 경우 통과 가능
+@Future : 대상 날짜가 현재보다 미래일 경우만 통과 가능
+@Past : 대상 날짜가 현재보다 과거일 경우만 통과 가능
+@Max(value) : 지정된 값보다 아래일 경우만 통과 가능
+@Min(value) : 지정된 값보다 이상일 경우만 통과 가능
+@NotNull : null 값이 아닐 경우만 통과 가능
+@Null : null일 겨우만 통과 가능
+@Pattern(regex=, flag=) : 해당 정규식을 만족할 경우만 통과 가능
+@Size(min=, max=) : 문자열 또는 배열이 지정된 값 사이일 경우 통과 가능
 
 
 
+출처: https://postitforhooney.tistory.com/entry/SpringAnnotationValid와-어노테이션Annotation [PostIT]
 * 참고할만한 사이트
 https://sanghaklee.tistory.com/57
