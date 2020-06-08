@@ -36,9 +36,9 @@ public class UserController {
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(savedUser.getId())
+                .buildAndExpand(savedUser.getId()) //pathvariable(=id)에 들어갈 값
                 .toUri();
-
+        
         return ResponseEntity.created(location).build();
     }
 }

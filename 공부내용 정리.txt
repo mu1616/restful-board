@@ -1,0 +1,24 @@
+* Restful API를 만드는 이유??
+
+Restful API를 만드는 가장 큰 이유는 Client Side를 정형화된 플랫폼이 아닌 모바일, PC, 어플리케이션 등 플랫폼에 제약을 두지 않는 것을 목표로 했기 때문이다.
+과거에는 Server Side에서 데이터를 전달해주는 Client 프로그램의 대상이 명확했다. PC 브라우저가 그 대상이었다. 그렇다보니 그냥 jsp, php 등을 이용한 웹페이지를 구성하고 
+작업을 진행하면 됐다. 하지만, client 프로그램이 다양화되고 그에 맞춰서 Server Side를 일일이 만드는 것이 꽤 비효율적인 일이 되었다. 이런 과정에서 Client Side를 고려하지 않고
+메시지 기반, XML, JSON과 같은 client에서 바로 객체로 치환 가능한 형태의 데이터 통신을 지향하게 되면서 Server와 Client의 역할을 분리하게 되었다. ......
+https://steemit.com/kr-dev/@igna84/spring-boot-responseentity
+
+* ResponseEntity
+
+ResponseEntity는 개발자가 결과 데이터와 HTTP 상태 코드를 직접 제어할수 있는 클래스로, 개발자는 404나 500같은 HTTP 상태 코드를 전송하고 싶은 데이터와 함께 전송할 수 있기 때문에 
+좀 더 세밀한 제어가 필요한 경우 사용할 수 있다.
+
+* Location Hedaer 
+
+리소스가 리다이렉트된 대에 주소, 또는 새로 생성된 리소스 주소를 명시한다.
+새로 생성된 리소스의 경우 HTTP 상태코드 201 Created가 반환된다.
+300번대 응답의 경우 "HTTP/1.1 302 Found Location: /" 이런 응답이 왔다면 브라우저는 / 주소로 redirect 한다.
+
+
+
+
+* 참고할만한 사이트
+https://sanghaklee.tistory.com/57
