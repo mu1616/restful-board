@@ -40,6 +40,35 @@ javax에서 제공하는 @Valid를 통해서 입력값의 유효성을 검사할
 @Pattern(regex=, flag=) : 해당 정규식을 만족할 경우만 통과 가능
 @Size(min=, max=) : 문자열 또는 배열이 지정된 값 사이일 경우 통과 가능
 
+* JsonIgnore, JsonProperty
+
+Json 데이터를 읽고 쓰는데에 제한을 걸어둔다. JsonProperty 속성을 지정하면 쓰기만 또는 읽기만 가능 설정을 할 수 있다.
+
+* JsonFilter, JsonView
+
+Json 응답을 넘겨줄 때, 클라이언트가 필요한 필드만 골라서 받을 수 있도록 해준다. 해당 기능을 사용해 필터링한 경우 MappingJacksonValue 으로 반환해야 한다.
+
+* Json 테스트
+
+https://stylishc.tistory.com/140 참고
+
+* Bean과 Component 차이?
+
+@Bean의 경우 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶은 경우에 사용된다. 즉, 프로퍼티를 변경해서 생성한 인스턴스를 Spring에게 관리하라고 맡기는 것이다.
+반면 개발자가 직접 컨트롤이 가능한 Class들의 경우엔 @Component를 사용한다.
+개발자가 생성한 Class에 @Bean을 선언하면 컴파일 에러가 발생한다.
+
+# BeanUtils
+
+객체를 다룰 때 유용한 유틸기능들 제공
+copyProperties : 객체에 같은 프로퍼티  값을 복사해준다.  필드 이름과 타입이 같을 때만 사용할 수 있다.
+
+* REST API 버저닝
+
+- uri를 이용
+- request param을 이용
+- request header를 이용 (header 생성 or accept 헤더 이용)
+- ......
 
 
 출처: https://postitforhooney.tistory.com/entry/SpringAnnotationValid와-어노테이션Annotation [PostIT]
