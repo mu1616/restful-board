@@ -70,7 +70,12 @@ copyProperties : 객체에 같은 프로퍼티  값을 복사해준다.  필드 
 - request header를 이용 (header 생성 or accept 헤더 이용)
 - ......
 
+* hatesoas
 
+서버가 리소스에 대한 정보를 제공할 때, 그 리소스와 연관이 되어있는 링크 정보들까지 같이 제공하고,
+클라이언트는 제공이 된 연관된 링크 정보를 바탕으로 리소스에 접근한다.
+Spring 2.1.x -> Resource, ControllerLinkBuilder 사용 
+Spring 2.2.x -> EntityModel, WebMvcLinkBuilder 사용
 출처: https://postitforhooney.tistory.com/entry/SpringAnnotationValid와-어노테이션Annotation [PostIT]
 * 참고할만한 사이트
 https://sanghaklee.tistory.com/57
