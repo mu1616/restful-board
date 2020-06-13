@@ -49,9 +49,8 @@ public class UserController {
                 ControllerLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
         */
         resource.add(new Link(request.getRequestURL().toString()).withSelfRel());
-        resource.add(linkTo(methodOn(UserController.class).retrieveAllUsers())
-                .withRel("all-users")
-                .withType("GET"));
+        resource.add(linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
+
 
         SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
                 //아래의 필드들을 가져온다. JsonIgnore 되어있는 경우 가져오지 않음.
