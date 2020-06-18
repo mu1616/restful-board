@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("UserInfo")  //UserInfo라는 이름의 JsonFilter 생성
+//@JsonFilter("UserInfo")  //UserInfo라는 이름의 JsonFilter 생성
 @ApiModel(description = "사용자 상제 정보를 위한 도메인 객체")
 @Entity
 public class User {
