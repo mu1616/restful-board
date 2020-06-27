@@ -1,0 +1,131 @@
+* Restful API를 만드는 이유??
+
+Restful API를 만드는 가장 큰 이유는 Client Side를 정형화된 플랫폼이 아닌 모바일, PC, 어플리케이션 등 플랫폼에 제약을 두지 않는 것을 목표로 했기 때문이다.
+과거에는 Server Side에서 데이터를 전달해주는 Client 프로그램의 대상이 명확했다. PC 브라우저가 그 대상이었다. 그렇다보니 그냥 jsp, php 등을 이용한 웹페이지를 구성하고 
+작업을 진행하면 됐다. 하지만, client 프로그램이 다양화되고 그에 맞춰서 Server Side를 일일이 만드는 것이 꽤 비효율적인 일이 되었다. 이런 과정에서 Client Side를 고려하지 않고
+메시지 기반, XML, JSON과 같은 client에서 바로 객체로 치환 가능한 형태의 데이터 통신을 지향하게 되면서 Server와 Client의 역할을 분리하게 되었다. ......
+https://steemit.com/kr-dev/@igna84/spring-boot-responseentity
+
+
+* ResponseEntity
+
+ResponseEntity는 개발자가 결과 데이터와 HTTP 상태 코드를 직접 제어할수 있는 클래스로, 개발자는 404나 500같은 HTTP 상태 코드를 전송하고 싶은 데이터와 함께 전송할 수 있기 때문에 
+좀 더 세밀한 제어가 필요한 경우 사용할 수 있다.
+
+
+* Location Hedaer 
+
+리소스가 리다이렉트된 대에 주소, 또는 새로 생성된 리소스 주소를 명시한다.
+새로 생성된 리소스의 경우 HTTP 상태코드 201 Created가 반환된다.
+300번대 응답의 경우 "HTTP/1.1 302 Found Location: /" 이런 응답이 왔다면 브라우저는 / 주소로 redirect 한다.
+
+
+* ControllerAdvice
+
+ControllerAdvice는 클래스의 경로를 검색해서 오류를 캐치할 구현 클래스를 만들게 도와준다. 일반적으로 @Controller 또는 @RestController 가 선언된 클래스들에서
+발생한 예외를 감지하고 적절한 응답을만들어 낼 때 사용한다. AOP를 사용한다.
+간단하게 생각하면, 비즈니스 로직에서 Exception 던질 때 마다 메세지, 공통로직 처리 등 공통으로 해야할 부분을 @ControllerAdvice 가 달린 클래스에 정의해서 처리해준다고 생각하는 게 쉽다.
+
+
+* Valid
+
+javax에서 제공하는 @Valid를 통해서 입력값의 유효성을 검사할 수 있다.
+@AssertFalse : false 값만 통과 가능
+@AssertTrue : true 값만 통과 가능
+@DecimalMax(value=) : 지정된 값 이하의 실수만 통과 가능
+@DecimalMin(value=) : 지정된 값 이상의 실수만 통과 가능
+@Digits(integer=,fraction=) : 대상 수가 지정된 정수와 소수 자리수보다 적을 경우 통과 가능
+@Future : 대상 날짜가 현재보다 미래일 경우만 통과 가능
+@Past : 대상 날짜가 현재보다 과거일 경우만 통과 가능
+@Max(value) : 지정된 값보다 아래일 경우만 통과 가능
+@Min(value) : 지정된 값보다 이상일 경우만 통과 가능
+@NotNull : null 값이 아닐 경우만 통과 가능
+@Null : null일 겨우만 통과 가능
+@Pattern(regex=, flag=) : 해당 정규식을 만족할 경우만 통과 가능
+@Size(min=, max=) : 문자열 또는 배열이 지정된 값 사이일 경우 통과 가능
+
+
+* JsonIgnore, JsonProperty
+
+Json 데이터를 읽고 쓰는데에 제한을 걸어둔다. JsonProperty 속성을 지정하면 쓰기만 또는 읽기만 가능 설정을 할 수 있다.
+
+
+* JsonFilter, JsonView
+
+Json 응답을 넘겨줄 때, 클라이언트가 필요한 필드만 골라서 받을 수 있도록 해준다. 해당 기능을 사용해 필터링한 경우 MappingJacksonValue 으로 반환해야 한다.
+JsonFilter를 선언했다면, 필터링 코드를 추가하지 않고 반환 시 에러가 발생한다.
+
+
+* Json 테스트
+
+https://stylishc.tistory.com/140 참고
+
+
+* Bean과 Component 차이?
+
+@Bean의 경우 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶은 경우에 사용된다. 즉, 프로퍼티를 변경해서 생성한 인스턴스를 Spring에게 관리하라고 맡기는 것이다.
+반면 개발자가 직접 컨트롤이 가능한 Class들의 경우엔 @Component를 사용한다.
+개발자가 생성한 Class에 @Bean을 선언하면 컴파일 에러가 발생한다.
+
+
+# BeanUtils
+
+객체를 다룰 때 유용한 유틸기능들 제공
+copyProperties : 객체에 같은 프로퍼티  값을 복사해준다.  필드 이름과 타입이 같을 때만 사용할 수 있다.
+
+
+* REST API 버저닝
+
+- uri를 이용
+- request param을 이용
+- request header를 이용 (header 생성 or accept 헤더 이용)
+- ......
+
+
+* HATEOAS
+
+서버가 리소스에 대한 정보를 제공할 때, 그 리소스와 연관이 되어있는 링크 정보들까지 같이 제공하고,
+클라이언트는 제공이 된 연관된 링크 정보를 바탕으로 리소스에 접근한다.
+Spring 2.1.x -> Resource, ControllerLinkBuilder 사용 
+Spring 2.2.x -> EntityModel, WebMvcLinkBuilder 사용
+
+
+* Spring Rest Docs
+
+자바 문서 자동화에는 주로 Swagger 와 Spring Rest Docs가 사용된다.
+	Spring Rest Docs			Swagger
+장점	제품코드에 영향 없다.		API 를 테스트 해 볼수 있는 화면을 제공한다.
+ 	테스트가 성공해야 문서작성된다.	적용하기 쉽다.
+	
+단점	적용하기 어렵다.			제품코드에 어노테이션 추가해야한다.
+						제품코드와 동기화가 안될수 있다.
+	
+	
+* JPA
+
+JPA를 사용하면 테이블을 자동으로 생성해준다. 하지만 이런 기능이 실제 운영중이거나 개발중인 데이터베이스에 치명적인 오류를 초래할 수 있기 때문에,
+테이블 생성은 쿼리문으로 하는 것이 더 선호된다. 그러므로 none 속성 또는 validate 속성을 사용하자
+대부분의 DB에서는 none이 기본값이고, in-memory db에서는 create-drop 이 기본값인듯??
+@javax.persistence.Id : 엔티티의 기본 키 설정
+@GeneratedValue : 테이블의 대체키(임의로 만들어진 키)를 자동으로 생성한다. (strategy 속성으로 옵션 지정 가능)
+
+
+* 즉시로딩, 지연로딩
+
+n:1 관계에서 어떤 엔티티를 조회했을 때 연관된 엔티티를 같이 로딩하고 싶을 수도 있지만, 그렇지 않을 경우 객체의 로딩을 뒤로 미루는 방식을 지연 로딩이라고 한다.
+그리고 필요한 시점에 그 객체를 데이터베이스에서 불러올 수 있다. JPA는 프록시 전략을 이용해 지연로딩 기능을 구현한다. 
+(User 와 Team이 있다면 User의 Team 속성을 실제 Team 객체가 아니라 프록시 객체로 대체하고 필요할 때 db에서 Team 엔티티를 조회함)
+조인이 아니라 select가 여러개 나가는 것과 동일
+
+즉시로딩은 연관된 엔티티를 따로따로 조회하는 것이 아니라, 조인을 이용해 하나의 쿼리로 데이터를 가져오기 때문에 만약 외래키에게 널을 허용한다면? 외부조인을, 외래키가 널을 허용하지 않는다면 내부조인을 이용해서 가져온다.
+대게 정말 필요한 상황을 제외하고는 LAZY, 지연로딩하는 것을 권고한다고 한다.
+https://ict-nroo.tistory.com/132
+
+
+* JPA 연관관계
+https://ict-nroo.tistory.com/122
+
+
+
+* 참고할만한 사이트
+https://sanghaklee.tistory.com/57
