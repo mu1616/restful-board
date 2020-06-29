@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ApiService from "../../ApiService";
 
 class UserListComponent extends Component {
-    Constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
