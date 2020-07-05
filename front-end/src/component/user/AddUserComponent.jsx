@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import ApiService from "../../ApiService";
+import { Typography } from '@material-ui/core';
+
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 class AddUserComponent extends Component {
 
@@ -47,35 +51,35 @@ class AddUserComponent extends Component {
     render() {
         return (
             <div>
-                <h2>Add User</h2>
-                <form>
-                    <div>
-                        <label>ID:</label>
-                        <input type = "text" placeholder="ID" name="id" 
-                            value={this.state.id} onChange={this.onChange} />
-                    </div>
-
-                    <div>
-                        <label>password:</label>
-                        <input type="password" placeholder="Password" name="password"
-                            value={this.state.password} onChange={this.onChange} />
-                    </div>
+                <Typography variant="h4" style={style}>Add User</Typography>
+                <form style={formContainer}>
                     
-                    <div>
-                        <label>Name:</label>
-                        <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.onChange} />              
-                    </div>
+                    <TextField type="text" placeholder="ID" name="id" fullWidth margin="normal" value={this.state.username}
+                        onChenage={this.onChange} />
 
-                    <div>
-                        <label>SSN:</label>
-                        <input type="text" placeholder="SSN" name="ssn" value={this.state.ssn} onChange={this.onChange} />
-                    </div>
+                    <TextField type="Password" placeholder="Password" name="password" fullWidth margin="normal" 
+                    value={this.state.password} onChenage={this.onChange} />
 
-                    <button onClick={this.saveUser}>Save</button>
+                    <TextField type="text" placeholder="Name" name="name" fullWidth margin="normal" 
+                    value={this.state.name} onChenage={this.onChange} />
+                    
+                    <TextField type="text" placeholder="SSN" name="ssn" fullWidth margin="normal" 
+                    value={this.state.ssn} onChenage={this.onChange} />
+
+                    <Button variant="contained" color="primary" onClick={this.saveUser}>Save</Button>
                 </form>
             </div>
         );
     }
 }
 
+const formContainer = {
+    display : 'flex',
+    flexFlow: 'row wrap'
+}
+
+const style = {
+    display : 'flex',
+    justifyContent : 'center'
+}
 export default AddUserComponent;

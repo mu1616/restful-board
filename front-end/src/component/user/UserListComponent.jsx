@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import ApiService from "../../ApiService";
 
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import CreateIcon from '@material-ui/icons/Create' 
+import DeleteIcon from '@material-ui/icons/Delete'
+
 class UserListComponent extends Component {
     constructor(props) {
         super(props);
@@ -53,34 +63,38 @@ class UserListComponent extends Component {
     render() {
         return (
             <div>
-                <h2>User List</h2>
-                <button onClick={this.addUser}>Add User</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Password</th>
-                            <th>SSN</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <Typography variant="h4" style={style}>User List</Typography>
+                <Button variant="contained" color="primary"onClick={this.addUser}>Add User</Button>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Password</TableCell>
+                            <TableCell>SSN</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {this.state.users.map( user =>
-                            <tr key = {user.id}>
-                                <td>{user.id}</td>
-                                <td>{user.name}</td>
-                                <td>{user.password}</td>
-                                <td>{user.ssn}</td>
-                                <td>
-                                    <button onClick = { () => this.deleteUser(user.id) }>Delete</button>
-                                </td>
-                            </tr>
+                            <TableRow key = {user.id}>
+                                <TableCell>{user.id}</TableCell>
+                                <TableCell>{user.name}</TableCell>
+                                <TableCell>{user.password}</TableCell>
+                                <TableCell>{user.ssn}</TableCell>
+                                <TableCell align="right" onClick = { () => this.deleteUser(user.id) }>
+                                    <DeleteIcon />
+                                </TableCell>
+                            </TableRow>
                             )}
-                    </tbody>
-                </table>
+                    </TableBody>
+                </Table>
             </div>
         );      
     }
 }
 
+const style = {
+    display : 'flex',
+    justifyContent : 'center'
+}
 export default UserListComponent;
