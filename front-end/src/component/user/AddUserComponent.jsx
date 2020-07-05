@@ -54,17 +54,17 @@ class AddUserComponent extends Component {
                 <Typography variant="h4" style={style}>Add User</Typography>
                 <form style={formContainer}>
                     
-                    <TextField type="text" placeholder="ID" name="id" fullWidth margin="normal" value={this.state.username}
+                    <TextField type="text" placeholder="ID" name="id" fullWidth margin="normal" 
                         onChenage={this.onChange} />
 
-                    <TextField type="Password" placeholder="Password" name="password" fullWidth margin="normal" 
-                    value={this.state.password} onChenage={this.onChange} />
+                    <TextField type="password" placeholder="Password" name="password" fullWidth margin="normal" 
+                    onChenage={this.onChange} />
 
                     <TextField type="text" placeholder="Name" name="name" fullWidth margin="normal" 
-                    value={this.state.name} onChenage={this.onChange} />
+                    onChenage={this.onChange} />
                     
                     <TextField type="text" placeholder="SSN" name="ssn" fullWidth margin="normal" 
-                    value={this.state.ssn} onChenage={this.onChange} />
+                    onChenage={this.onChange} />
 
                     <Button variant="contained" color="primary" onClick={this.saveUser}>Save</Button>
                 </form>

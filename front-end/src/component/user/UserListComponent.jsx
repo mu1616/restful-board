@@ -95,6 +95,7 @@ class UserListComponent extends Component {
 
 const style = {
     display : 'flex',
-    justifyContent : 'center'
+    justifyContent : 'center',
+    color: 'black'
 }
 export default UserListComponent;
