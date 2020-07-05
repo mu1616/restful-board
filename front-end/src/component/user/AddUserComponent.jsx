@@ -11,7 +11,6 @@ class AddUserComponent extends Component {
         super(props);
 
         this.state = {
-            id : '',
             name : '',
             password : '',
             ssn: '',
@@ -53,18 +52,15 @@ class AddUserComponent extends Component {
             <div>
                 <Typography variant="h4" style={style}>Add User</Typography>
                 <form style={formContainer}>
-                    
-                    <TextField type="text" placeholder="ID" name="id" fullWidth margin="normal" 
-                        onChenage={this.onChange} />
 
                     <TextField type="password" placeholder="Password" name="password" fullWidth margin="normal" 
-                    onChenage={this.onChange} />
+                    onChange={this.onChange} />
 
                     <TextField type="text" placeholder="Name" name="name" fullWidth margin="normal" 
-                    onChenage={this.onChange} />
+                    onChange={this.onChange} />
                     
                     <TextField type="text" placeholder="SSN" name="ssn" fullWidth margin="normal" 
-                    onChenage={this.onChange} />
+                    onChange={this.onChange} />
 
                     <Button variant="contained" color="primary" onClick={this.saveUser}>Save</Button>
                 </form>
